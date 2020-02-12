@@ -12,7 +12,7 @@ This package is using the Microsoft Cognitive Services API, you'll need to provi
 - $imageB64: image hashed in base64.
 
 ###### Returns
-This function return an array / dict of different value :\n
+This function return an array / dict of different value :
 - lines: array of every line the microsoft api returns
 - name: name of the invoice (a bit random)
 - date: date of the invoice
