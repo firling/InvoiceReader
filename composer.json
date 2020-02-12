@@ -1,0 +1,13 @@
+{
+    "name": "firling/invoicereader",
+    "description": "return the name, total, vat and date of the sent invoice (image)",
+    "type": "library",
+    "authors": [
+        {
+            "name": "firling",
+            "email": "anquetil.jul@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
