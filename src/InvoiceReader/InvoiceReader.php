@@ -12,7 +12,7 @@ class InvoiceReader
         if (substr($imageB64, 0, 4) == "data") {
           $imageData = base64_decode(explode(',', $imageB64)[1]);
         } else {
-          $imageData = $imageB64;
+          $imageData = base64_decode($imageB64);
         }
 
         //on crée la requete POST
@@ -73,7 +73,7 @@ class InvoiceReader
               }
           }
         } else {
-          return array("Error" => "Api didn't respond to the image sent.");
+          return array("Error" => "Api didn't respond to the image sent.", "Data" => $data);
         }
 
         if(!$valid) {
