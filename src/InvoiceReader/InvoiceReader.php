@@ -4,10 +4,10 @@ namespace InvoiceReader;
 
 class InvoiceReader
 {
-    public static function readInvoice($apiKey, $baseUrl, $imageB64) {
-        if (!$apiKey) { throw new Exception("Api key is missing."); }
-        if (!$baseUrl) { throw new Exception("Base url is missing."); }
-        if (!$imageB64) { throw new Exception("Image (B64) is missing."); }
+    public static function readInvoice($apiKey="", $baseUrl="", $imageB64="") {
+        if ($apiKey=="") { throw new Exception("Api key is missing."); }
+        if ($baseUrl=="") { throw new Exception("Base url is missing."); }
+        if ($imageB64=="") { throw new Exception("Image (B64) is missing."); }
 
         if (substr($imageB64, 0, 4) == "data") {
           $imageData = base64_decode(explode(',', $imageB64)[1]);
