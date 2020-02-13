@@ -166,6 +166,6 @@ class InvoiceReader
           }
         }
 
-        return $arrResult, 200
+        return $arrResult;
     }
 }
