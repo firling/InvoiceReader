@@ -5,9 +5,9 @@ namespace InvoiceReader;
 class InvoiceReader
 {
     public static function readInvoice($apiKey="", $baseUrl="", $imageB64="") {
-        if ($apiKey=="") { throw new Exception("Api key is missing."); }
-        if ($baseUrl=="") { throw new Exception("Base url is missing."); }
-        if ($imageB64=="") { throw new Exception("Image (B64) is missing."); }
+        if ($apiKey=="") { return array("Error" => "Api key is missing."); }
+        if ($baseUrl=="") { return array("Error" => "Base url is missing."); }
+        if ($imageB64=="") { return array("Error" => "Image (B64) is missing."); }
 
         if (substr($imageB64, 0, 4) == "data") {
           $imageData = base64_decode(explode(',', $imageB64)[1]);
@@ -73,11 +73,11 @@ class InvoiceReader
               }
           }
         } else {
-          throw new Exception("Api didn't respond to the image sent.");
+          return array("Error" => "Api didn't respond to the image sent.");
         }
 
         if(!$valid) {
-          throw new Exception("Api didnt respond in time or the image sent isn't valid (max 4MB)");
+          return array("Error" => "Api didnt respond in time or the image sent isn't valid (max 4MB).");
         }
 
 
