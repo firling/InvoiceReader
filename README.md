@@ -2,6 +2,10 @@
 
 ### `composer require firling/invoicereader`
 
+_______________________________________________________________________________________________________________
+
+### `https://packagist.org/packages/firling/invoicereader`
+
 This package is using the Microsoft Cognitive Services API, you'll need to provide an API key, as well as a base url.
 
 ## function: readInvoice($apiKey, $baseUrl, $imageB64)
