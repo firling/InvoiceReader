@@ -101,7 +101,11 @@ class InvoiceReader
         foreach( $resultArrLines as $line ) {
           if(preg_match($regex, $line)) {
             preg_match($regex, $line, $resultDate);
-            $arrResult["date"] = $resultDate[0];
+            if (preg_match("#^(([0-2][0-9])|(3[0-1]))(-|/)((0[1-9])|(1[0-2]))(-|/)(\d{2})$#", $resultDate[0])){
+              $arrResult["date"] = substr($resultDate[0], 0, -2) . "20" . substr($resultDate[0], -2);
+            } else {
+              $arrResult["date"] = $resultDate[0];
+            }
           }
           // Si il y a montant, total, totaux dans la ligne, on commence à chercher le prix dans les lignes du dessous
           if(preg_match("#(montant)|(total)|(totaux)|(prix)#", strtolower($line))) {
@@ -135,6 +139,18 @@ class InvoiceReader
             }
           }
           array_unshift($lastValues, $line);
+        }
+
+        if(!isset($totalPrice[0])) {
+          foreach ($resultArrLines as $line) {
+            if(preg_match("#[0-9]+(\.|,)[0-9]{2,2}(?!(\.|[0-9a-zA-Z]))#", $line)) {
+              array_push($totalPrice, $line);
+            }
+          }
+        }
+
+        if(!isset($totalPrice[0])) {
+          array_push($totalPrice, "0");
         }
 
         $highestPrice = $totalPrice[0];
